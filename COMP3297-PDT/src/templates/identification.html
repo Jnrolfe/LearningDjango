@@ -1,0 +1,5 @@
+{% if user.groups.filter(name='Project Manager').exist() %}
+	Project Manager
+{% else %}
+	Software Developer
+{% endif %}

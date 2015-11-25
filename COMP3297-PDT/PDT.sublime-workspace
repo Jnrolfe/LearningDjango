@@ -1,0 +1,299 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"STATIC",
+				"STATIC_ROOT"
+			],
+			[
+				"contact",
+				"contact_message"
+			],
+			[
+				"cl",
+				"cleaned_data"
+			],
+			[
+				"p",
+				"POST"
+			],
+			[
+				"Sign",
+				"SignUpForm"
+			],
+			[
+				"sig",
+				"SignUpForm"
+			],
+			[
+				"auto_",
+				"auto_now_add"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
+				"delete",
+				"deleteNode"
+			],
+			[
+				"height",
+				"height_diff"
+			],
+			[
+				"L",
+				"L_rotation"
+			],
+			[
+				"print",
+				"printRecord"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Argens/Desktop/DjangoSites/django-authentication-redirect-master/README.md",
+		"/Users/Argens/Desktop/Django Sites/PDT/bin/pip",
+		"/Users/Argens/Desktop/trydjango18/src/templates/home.html",
+		"/Users/Argens/Desktop/trydjango18/src/trydjango18/settings.py",
+		"/Users/Argens/Desktop/trydjango18/src/templates/base.html",
+		"/Users/Argens/Desktop/trydjango18/src/templates/forms.html",
+		"/Users/Argens/Desktop/trydjango18/src/newsletter/forms.py",
+		"/Users/Argens/Desktop/trydjango18/src/templates/navbar.html",
+		"/Users/Argens/Desktop/trydjango18/src/trydjango18/urls.py",
+		"/Users/Argens/Desktop/trydjango18/src/newsletter/views.py",
+		"/Users/Argens/Desktop/trydjango18/src/static_in_proj/our_static/css/navbar-static-top.css",
+		"/Users/Argens/Desktop/trydjango18/src/static_in_proj/our_static/css/bootstrap.min.css",
+		"/Users/Argens/Desktop/trydjango18/src/static_in_proj/our_static/img/example.txt",
+		"/Users/Argens/Desktop/trydjango18/src/newsletter/templates/home.html",
+		"/Users/Argens/Desktop/trydjango18/src/newsletter/migrations/__init__.py",
+		"/Users/Argens/Desktop/trydjango18/src/newsletter/models.py",
+		"/Users/Argens/Desktop/trydjango18/src/newsletter/admin.py",
+		"/Users/Argens/Desktop/trydjango18/src/newsletter/migrations/forms.py",
+		"/Users/Argens/Desktop/Haskell HW/Tutorial 4/TypeCheck.hs",
+		"/Users/Argens/Desktop/Haskell HW/Tutorial 2/Interp.hs",
+		"/Users/Argens/Desktop/Haskell HW/Tutorial 3/Codes/Interp.hs",
+		"/Users/Argens/Desktop/Haskell HW/Tutorial 4/Parser.y",
+		"/Users/Argens/Desktop/PDT/index.html",
+		"/Users/Argens/Desktop/PDT/css/my.css",
+		"/Users/Argens/Downloads/TabHostDemo-master/project.properties",
+		"/Users/Argens/Desktop/COMP 3230 OS/share/wordcnt-p1.c",
+		"/Users/Argens/Downloads/3a.py",
+		"/Users/Argens/Downloads/3c.py",
+		"/Users/Argens/Downloads/03.py",
+		"/Users/Argens/Downloads/02.py",
+		"/Users/Argens/scpt_student.ppk",
+		"/Users/Argens/scpt_student.pem",
+		"/Users/Argens/Desktop/scpt_student.ppk",
+		"/Users/Argens/Downloads/example4.py",
+		"/Users/Argens/Downloads/example5.py",
+		"/Users/Argens/Downloads/example3c.py",
+		"/Users/Argens/Downloads/example3a.py",
+		"/Users/Argens/Downloads/example03c.py",
+		"/Users/Argens/Downloads/example01.py",
+		"/Users/Argens/Downloads/Lecture4/Substitution.hs",
+		"/Users/Argens/Desktop/Android Apps/PairsGame/app/src/main/java/com/example/argens/pairsgame/Cards.java",
+		"/Users/Argens/Desktop/Android Apps/HelloButton/app/src/main/java/org/liyiwei/android/example/HelloButtonActivity.java",
+		"/Users/Argens/Library/Android/sdk/extras/intel/Hardware_Accelerated_Execution_Manager/silent_install.sh",
+		"/Users/Argens/Desktop/program.hs",
+		"/Users/Argens/Downloads/Infix2Postfix.java",
+		"/Users/Argens/Desktop/CodeIT Suisse Entry Challenge 2015.webarchive",
+		"/Users/Argens/Desktop/_uncatergorized/Year 2/Q2.cpp~",
+		"/Users/Argens/Desktop/_uncatergorized/Year 2/lab1.3/hello.cpp",
+		"/Users/Argens/Desktop/_uncatergorized/Year 2/hello.cpp",
+		"/Users/Argens/Desktop/_uncatergorized/Year 2/Code/hello.cpp",
+		"/Users/Argens/Desktop/_uncatergorized/Year 2/Code/hello3.cpp",
+		"/Users/Argens/Desktop/_uncatergorized/Year 2/bst.c",
+		"/Users/Argens/Desktop/_uncatergorized/Year 2/av1.c",
+		"/Users/Argens/Desktop/CheatSheets/employee.sql",
+		"/Users/Argens/Downloads/MatrixMultiplication.java",
+		"/Users/Argens/Desktop/employee.sql",
+		"/Users/Argens/Desktop/Lab 4/queryInbox.php",
+		"/Users/Argens/Desktop/Archive/3035072143.cpp",
+		"/Users/Argens/Downloads/Quaternion.cpp",
+		"/Users/Argens/Downloads/logAnalyzer.cpp",
+		"/Users/Argens/Downloads/Quaternion.h",
+		"/Users/Argens/Downloads/avgProducts.sh",
+		"/Users/Argens/Downloads/getProductAccess.sh",
+		"/Users/Argens/Downloads/statProducts.sh",
+		"/Users/Argens/Desktop/passbyref.c",
+		"/Users/Argens/Desktop/arryay fn.c",
+		"/Users/Argens/Desktop/mark.sh",
+		"/Users/Argens/Desktop/Makefile.GNUmakefile",
+		"/Users/Argens/Desktop/BigInteger.h",
+		"/Users/Argens/Desktop/forloop.sh",
+		"/Users/Argens/Desktop/meh.sh",
+		"/Users/Argens/Desktop/redirection.sh",
+		"/Users/Argens/Downloads/string2.c",
+		"/Users/Argens/Downloads/sincos.c",
+		"/Users/Argens/Dropbox/COMP 2123/BigInteger.h",
+		"/Users/Argens/Desktop/sketch/main.cpp",
+		"/Users/Argens/Desktop/main.cpp",
+		"/Users/Argens/Downloads/Assignment4/AnimalGUI.java",
+		"/Users/Argens/Desktop/Java Projects/Assignment 5/src/Peer.java",
+		"/Users/Argens/Downloads/Email.py",
+		"/Users/Argens/Desktop/Email.py",
+		"/Users/Argens/Desktop/logAnalyzer.cpp",
+		"/Users/Argens/Downloads/employee.c",
+		"/Users/Argens/Desktop/link",
+		"/Users/Argens/Desktop/a.html",
+		"/Users/Argens/Desktop/Assignment2/Assignment2.java",
+		"/Users/Argens/Downloads/SkimMilk.java",
+		"/Users/Argens/Desktop/Unity/RhythmGraphics/Rhythm_game.svg",
+		"/Applications/XAMPP/xamppfiles/htdocs/Classwork_4_5/index.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/Test/index.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/Canvas/index.html",
+		"/Users/Argens/Desktop/index.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"home.",
+			"msg.",
+			"friend",
+			"insertion",
+			"Key not found",
+			"resend",
+			"forest",
+			"showq",
+			"question_template",
+			"display",
+			"hidden",
+			"display: none",
+			"question_option",
+			"questin_option",
+			"var current_question",
+			"current_question",
+			"fadeIn",
+			"%",
+			"radio_btn"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"d",
+				"/Users/Argens/Dropbox/COMP 2123/BigInteger.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
