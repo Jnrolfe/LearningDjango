@@ -53,6 +53,8 @@ def phase(request):
 		"title": title,
 		"form": form
 	}
+	if form.is_valid():
+		form.save()
 	return render(request, "create_phase.html", context)
 
 def iteration(request):
@@ -62,6 +64,8 @@ def iteration(request):
 		"title": title,
 		"form": form
 	}
+	if form.is_valid():
+		form.save()
 	return render(request, "create_iteration.html", context)
 
 def defectData(request):
@@ -71,4 +75,6 @@ def defectData(request):
 		"title": title,
 		"form": form
 	}
+	if form.is_valid():
+		form.save()
 	return render(request, "create_defectData.html", context)
