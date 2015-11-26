@@ -11,13 +11,13 @@ class ProjectAdmin(admin.ModelAdmin):
 
 admin.site.register(Project, ProjectAdmin)
 
-class PhaseAdmin(admin.ModelAdmin):
+class PhaseAdmin(admin.ModelAdmin): 
 	list_display = ('project', 'name', 'is_closed')
 
 admin.site.register(Phase, PhaseAdmin)
 
 class IterationAdmin(admin.ModelAdmin):
-	list_display = ('developer', 'phase', 'name', 'is_closed')
+	list_display = ('phase', 'name', 'is_closed')
 
 admin.site.register(Iteration, IterationAdmin)
 

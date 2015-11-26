@@ -1,0 +1,36 @@
+{% block navbar %}{% include "navbar.html" %}{% endblock %}
+
+{% block sidebar %}{% include "sidebar.html" %}{% endblock %}
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1>Projects</h1>
+	{% if projects %}
+		<table class='table'>
+		{% for project in projects %}
+			<tr><td>{{ forloop.counter }}</td><td>{{ project }}</td></tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<h2>Failure.</h2>
+	{% endif %}
+	<h1>Phases</h1>
+	{% if phases %}
+		<table class='table'>
+		{% for phase in phases %}
+			<tr><td>{{ forloop.counter }}</td><td>{{ phase }}</td></tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<h2>Failure.</h2>
+	{% endif %}
+	<h1>Iterations</h1>
+	{% if iterations %}
+		<table class='table'>
+		{% for iteration in iterations %}
+			<tr><td>{{ forloop.counter }}</td><td>{{ iteration }}</td></tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<h2>Failure.</h2>
+	{% endif %}  
+</div>

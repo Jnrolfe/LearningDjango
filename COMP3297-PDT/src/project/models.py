@@ -22,9 +22,9 @@ class Phase(models.Model):
 
 class Iteration(models.Model):
 	phase = models.ForeignKey(Phase)
-	name = models.CharField("iteration", max_length=30)
+	name = models.CharField(max_length=30, blank=False)
 	is_closed = models.BooleanField(default=False)
-	developer = models.ForeignKey(User, null=True, blank=True)
+	developer = models.ManyToManyField(User, null=False, blank=True)
 	# timer = models.ForeignKey(timer_models.Timer.running_total)
 
 	def __str__(self):

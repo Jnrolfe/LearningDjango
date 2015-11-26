@@ -1,5 +1,5 @@
 from django import forms
-
+from django.contrib.auth.models import User
 from .models import Project, Phase, Iteration, DefectData
 
 class ProjectForm(forms.ModelForm):
@@ -10,13 +10,24 @@ class ProjectForm(forms.ModelForm):
 		fields = ['name', 'is_closed']
 
 class PhaseForm(forms.ModelForm):
-
+	INCEPTION = 'Inception'
+	ELABORATION = 'Elaboration'
+	CONSTRUCTION = 'Construction'
+	TRANSITION = 'Transition'
+	PHASE_CHOICES = (
+		(INCEPTION, 'Inception'), 
+		(ELABORATION, 'Elaboration'), 
+		(CONSTRUCTION, 'Construction'), 
+		(TRANSITION, 'Transition'),
+	)
+	name = forms.ChoiceField(choices=PHASE_CHOICES)
+	
 	class Meta:
 		model = Phase
 		fields = ['project', 'name', 'is_closed']
 
 class IterationForm(forms.ModelForm):
-
+	developer = forms.ModelMultipleChoiceField(queryset=User.objects.filter(groups__name='SoftwareDeveloper'), widget=forms.CheckboxSelectMultiple)
 	class Meta:
 		model = Iteration
 		fields = ['developer', 'phase', 'name', 'is_closed']

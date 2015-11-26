@@ -6,7 +6,7 @@
 	<form action="/create_defectData/" method="post">
 	    {% csrf_token %}
 	    {{ title }}
-	    {{ form }}
+	    {{ form.as_p }}
 	    <input type="submit" value="Submit" />
 	</form>
 </div>

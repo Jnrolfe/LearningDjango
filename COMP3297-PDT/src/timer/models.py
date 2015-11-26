@@ -4,10 +4,10 @@ from project.models import Iteration
 
 # Create your models here.
 class Timer(models.Model):
-	start_time = models.PositiveIntegerField(default=0)
-	end_time = models.PositiveIntegerField(default=0)
-	elapsed_time = models.PositiveIntegerField(default=0)
-	running_total = models.PositiveIntegerField(default=0)
+	start_time = models.PositiveIntegerField(default=0) # change this to DateTimeField
+	end_time = models.PositiveIntegerField(default=0) # change this to DateTimeField 
+	elapsed_time = models.PositiveIntegerField(default=0) # change this to DateTimeField 
+	running_total = models.PositiveIntegerField(default=0) 
 	user = models.ForeignKey(User, null=True, blank=True)
 	iteration = models.ForeignKey(Iteration, null=True, blank=True)
 
