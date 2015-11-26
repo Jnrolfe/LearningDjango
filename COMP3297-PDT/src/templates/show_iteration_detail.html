@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block navbar %}{% include "navbar.html" %}{% endblock %}
+
+{% block sidebar %}{% include "sidebar.html" %}{% endblock %}
+
+{% block section %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	{% if sloc_total %}
+		<h1>Data for iteration: {{ iteration.name }}</h1>
+		<table class='table'>
+			<tr><td>Total Lines:</td><td>{{ sloc_total }}</td></tr>
+			{% for dev in sloc_devs %}
+			<tr><td>{{ dev }}</td><td>{{ dev_line_set.0 }}</td></tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<h1>There is no data in iteration: {{ iteration.name }}</h1>
+		<p><a href="{% url 'index'%}">Go Back Home</a></p>
+	{% endif %}
+</div>
+{% endblock %}

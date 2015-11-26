@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block navbar %}{% include "navbar.html" %}{% endblock %}
+
+{% block sidebar %}{% include "sidebar.html" %}{% endblock %}
+
+{% block section %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	{% if iterations %}
+		<form action="/show_iteration_detail/" method="POST">
+			{% csrf_token %}
+		<h1>Iterations in Phase: {{ phase.name }}</h1>
+		<table class='table'>
+		{% for iteration in iterations %}
+			<tr><td>{{ forloop.counter }}</td><td>{{ iteration }}</td><td><input name='ite' type='radio' value={{ iteration.id }}></td></tr>
+		{% endfor %}
+		</table>
+		<input type="submit" value="Show Details">
+		</form>
+	{% else %}
+		<h1>There are no iterations in phase: {{ phase.name }}</h1>
+		<p><a href="{% url 'index'%}">Go Back Home</a></p>
+	{% endif %}
+</div>
+{% endblock %}

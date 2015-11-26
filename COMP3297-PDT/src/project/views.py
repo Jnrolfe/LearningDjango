@@ -96,23 +96,82 @@ def viewProjects(request):
 	User = request.user
 	# get projects the current user is manager of
 	projects = Project.objects.filter(manager=User)
-	
-	# get phases associated with projects
-	phaseList = []
-	for i in projects:
-		p = Phase.objects.get(project=i)
-		phaseList.append(p)
-
-	# get iterations associated with phases
-	iterationList = []
-	for i in phaseList:
-		iterationList.append(Iteration.objects.get(phase=i))
-
 	context = {
-		"projects": projects,
-		"phases": phaseList,
-		"iterations": iterationList
+		"projects": projects
 	}
 
 	return render(request, "view_projects.html", context)
+
+def showProjectDetail(request):
+	p = request.POST
+	p_id = p['pro']
+	proj = Project.objects.get(pk=p_id)
+	try:
+		phases = Phase.objects.filter(project=proj)
+		phaseList = []
+		for i in phases:
+			phaseList.append(i)
+		context = {
+			"project": proj,
+			"phases": phaseList
+		}
+	except Phase.DoesNotExist:
+		context = {
+			"project": proj
+		}
+	return render(request, "show_project_detail.html", context)
+
+def showPhaseDetail(request):
+	p = request.POST
+	p_id = p['pha']
+	phase = Phase.objects.get(pk=p_id)
+	try:
+		iterations = Iteration.objects.filter(phase=phase)
+		iterationList = []
+		for i in iterations:
+			iterationList.append(i)
+		context = {
+			"phase": phase,
+			"iterations": iterationList
+		}
+	except Iteration.DoesNotExist:
+		context = {
+			"phase": phase
+		}
+	return render(request, "show_phase_detail.html", context)
+
+def showIterationDetail(request):
+	p = request.POST
+	p_id = p['ite']
+	iteration = Iteration.objects.get(pk=p_id)
+	try:
+		slocs = ReportSLOC.objects.filter(iteration=iteration)
+		slocs_total_lines = 0
+		sloc_devs_set = set()
+		
+		# iteration total sloc
+		for i in slocs:
+			slocs_total_lines += i.total_lines
+			sloc_devs_set.add(i.developer)
+
+		# developer specific total
+		dev_line_list = []
+		for dev in sloc_devs_set:
+			devs_reports = ReportSLOC.objects.filter(developer=dev)
+			devs_line_total = 0
+			for report in devs_reports:
+				devs_line_total += report.total_lines
+			dev_line_list.append(devs_line_total)
+
+		context = {
+			"sloc_devs": sloc_devs_set,
+			"dev_line_list": dev_line_list,
+			"sloc_total": slocs_total_lines,
+			"iteration": iteration
+		}
+	except Iteration.DoesNotExist:
+		context = {
+			"iteration": iteration
+		}
+	return render(request, "show_iteration_detail.html", context)
 
