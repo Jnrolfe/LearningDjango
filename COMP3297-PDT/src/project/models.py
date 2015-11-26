@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# from timer import models as timer_models
-
 # Create your models here.
 class Project(models.Model):
 	manager = models.ForeignKey(User, unique=False, editable=False, null=True, blank=True)
@@ -10,7 +8,7 @@ class Project(models.Model):
 	is_closed = models.BooleanField(default=False)
 
 	def __str__(self):
-		return "Project %s managed by %s" % (self.name, self.manager)
+		return "Project: %s managed by %s" % (self.name, self.manager)
 
 class Phase(models.Model):
 	project = models.ForeignKey(Project)
@@ -18,22 +16,32 @@ class Phase(models.Model):
 	name = models.CharField("phase", max_length=30)
 
 	def __str__(self):
-		return "Phase %s of project %s" % (self.name, self.project.name)
+		return "Phase: %s of project %s" % (self.name, self.project.name)
 
 class Iteration(models.Model):
 	phase = models.ForeignKey(Phase)
 	name = models.CharField(max_length=30, blank=False)
 	is_closed = models.BooleanField(default=False)
 	developer = models.ManyToManyField(User, null=False, blank=True)
-	# timer = models.ForeignKey(timer_models.Timer.running_total)
 
 	def __str__(self):
-		return "Iteration %s of phase %s of project %s" % (self.name, self.phase.name, self.phase.project.name)
+		return "Iteration: %s of phase %s of project %s" % (self.name, self.phase.name, self.phase.project.name)
 
 class DefectData(models.Model):
-	iteration = models.ForeignKey(Iteration)
+	current_iteration = models.ForeignKey(Iteration, related_name="current_iteration", null=True, blank=True)
+	defect_iteration = models.ForeignKey(Iteration, related_name="defect_iteration", null=True, blank=True)
 	total_defects = models.PositiveIntegerField()
+	developer = models.ForeignKey(User, null=True, blank=True)
+	defect_description = models.TextField(blank=True)
+
+	def __str__(self):
+		return "Defect Data for iteration: %s" % (self.iteration.name)
+
+class ReportSLOC(models.Model):
+	developer = models.ForeignKey(User, null=True, blank=True)
+	iteration = models.ForeignKey(Iteration)
 	total_lines = models.PositiveIntegerField()
 
 	def __str__(self):
-		return "Defect Data for iteration %s" % (self.iteration.name)
+		return "Lines of code completed data for: %s" % (self.developer)
+

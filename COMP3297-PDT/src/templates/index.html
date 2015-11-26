@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block title %}
-	Index
+	Home
 {% endblock %}
 	{% block identification %}
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -22,13 +22,8 @@
 				{% endifusergroup %}
 			{% endifusergroup %}
 			</h1>
+			<p>Welcome Home</p>
 		</div>
-	{% endblock %}
-	{% block dashboard %}
-		{% include "dashboard.html" %}
-	{% endblock %}
-	{% block section %}
-		{% include "section.html" %}
 	{% endblock %}
 {% block navbar %}
 	{% include "navbar.html" %}

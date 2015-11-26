@@ -27,4 +27,6 @@ urlpatterns = [
     url(r'^create_defectData/', 'project.views.defectData', name = "create_defectData"),
     url(r'^start_timer/', 'timer.views.timer', name = "start_timer"),
     url(r'^view_projects/', 'project.views.viewProjects', name = "view_projects"),
+    url(r'^report_sloc/', 'project.views.reportSLOC', name = "report_sloc"),
+    url(r'^thank_you/', 'project.views.thankYou', name = "thank_you"),
 ]

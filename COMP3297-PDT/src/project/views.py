@@ -1,13 +1,17 @@
 # django imports
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf 
 # my imports
-from .forms import ProjectForm, PhaseForm, IterationForm, DefectDataForm
-from .models import Project, Phase, Iteration, DefectData
+from .forms import ProjectForm, PhaseForm, IterationForm, DefectDataForm, ReportSLOCForm
+from .models import Project, Phase, Iteration, DefectData, ReportSLOC
 
 # Create your views here.
+
+###########################################################
+######################### Forms ###########################
+###########################################################
 
 # create project form
 def project(request):
@@ -19,9 +23,9 @@ def project(request):
 	} 
 	if form.is_valid():
 		instance = form.save(commit=False)
-		manager = form.cleaned_data.get("manager")
 		instance.manager = request.user
 		instance.save()
+		return HttpResponseRedirect("/thank_you/")
 
 	return render(request, "create_project.html", context)
 
@@ -35,6 +39,7 @@ def phase(request):
 	}
 	if form.is_valid():
 		form.save()
+		return HttpResponseRedirect("/thank_you/")
 	return render(request, "create_phase.html", context)
 
 # create iteration form
@@ -48,6 +53,7 @@ def iteration(request):
 	}
 	if form.is_valid():
 		form.save()
+		return HttpResponseRedirect("/thank_you/")
 	return render(request, "create_iteration.html", context)
 
 # add new Defect Data
@@ -60,25 +66,47 @@ def defectData(request):
 	}
 	if form.is_valid():
 		form.save()
+		return HttpResponseRedirect("/thank_you/")
 	return render(request, "create_defectData.html", context)
+
+def reportSLOC(request):
+	title = "add source lines of code"
+	form = ReportSLOCForm(request.POST or None)
+	context = {
+		"title": title,
+		"form": form
+	}
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.developer = request.user
+		instance.save()
+		return HttpResponseRedirect("/thank_you/")
+
+
+	return render(request, "report_SLOC.html", context)
+
+def thankYou(request):
+	return render(request, "thank_you.html", {})
+
+###########################################################
+######################### Queries #########################
+###########################################################
 
 def viewProjects(request):
 	User = request.user
 	# get projects the current user is manager of
-	p = Project.objects.filter(manager=User)
-	projects = []
-	for i in p:
-		projects.append(i)
-
+	projects = Project.objects.filter(manager=User)
+	
 	# get phases associated with projects
 	phaseList = []
 	for i in projects:
-		phaseList.append(Phase.objects.filter(project=i))
+		p = Phase.objects.get(project=i)
+		phaseList.append(p)
 
 	# get iterations associated with phases
 	iterationList = []
 	for i in phaseList:
-		iterationList.append(Iteration.objects.filter(phase=i))
+		iterationList.append(Iteration.objects.get(phase=i))
 
 	context = {
 		"projects": projects,
@@ -87,3 +115,4 @@ def viewProjects(request):
 	}
 
 	return render(request, "view_projects.html", context)
+

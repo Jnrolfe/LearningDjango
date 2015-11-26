@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 {% block navbar %}{% include "navbar.html" %}{% endblock %}
 
 {% block sidebar %}{% include "sidebar.html" %}{% endblock %}
@@ -6,7 +7,7 @@
 	<form action="/create_project/" method="post">
 	    {% csrf_token %}
 	    {{ title }}
-	    {{ form.as_p }}
+	    {{ form|crispy }}
 	    <input type="submit" value="Submit" />
 	</form>
 </div>

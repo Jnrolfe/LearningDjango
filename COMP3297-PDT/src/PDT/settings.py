@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party apps
+    'crispy_forms',
     # my apps
     'authen',
     'index',
@@ -121,3 +122,5 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
 MEDIAFILES_DIRS = (
     os.path.join(BASE_DIR, "media"),
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

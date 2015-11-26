@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Project, Phase, Iteration, DefectData
+from .models import Project, Phase, Iteration, DefectData, ReportSLOC
 
 class ProjectForm(forms.ModelForm):
 	name = forms.CharField()
@@ -36,4 +36,10 @@ class DefectDataForm(forms.ModelForm):
 
 	class Meta:
 		model = DefectData
-		fields = ['iteration', 'total_defects', 'total_lines']
+		fields = ['defect_iteration', 'current_iteration', 'total_defects', 'defect_description']
+
+class ReportSLOCForm(forms.ModelForm):
+
+	class Meta:
+		model = ReportSLOC
+		fields = ['total_lines', 'iteration']

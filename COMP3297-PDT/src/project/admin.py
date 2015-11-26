@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Project, Phase, Iteration, DefectData
+from .models import Project, Phase, Iteration, DefectData, ReportSLOC
 # Register your models here.
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -22,6 +22,14 @@ class IterationAdmin(admin.ModelAdmin):
 admin.site.register(Iteration, IterationAdmin)
 
 class DefectDataAdmin(admin.ModelAdmin):
-	list_display = ('iteration', 'total_defects', 'total_lines')
+	list_display = ('defect_iteration', 'total_defects', 'current_iteration')
 
 admin.site.register(DefectData, DefectDataAdmin)
+
+class ReportSLOCAdmin(admin.ModelAdmin):
+	list_display = ('total_lines', 'iteration', 'developer')
+	def save_model(self, request, obj, form, change):
+		obj.developer = request.user
+		obj.save()
+
+admin.site.register(ReportSLOC, ReportSLOCAdmin)
