@@ -6,6 +6,7 @@ from django.core.context_processors import csrf
 # my imports
 from .forms import ProjectForm, PhaseForm, IterationForm, DefectDataForm, ReportSLOCForm
 from .models import Project, Phase, Iteration, DefectData, ReportSLOC
+from timer.models import Timer as timer_model
 
 # Create your views here.
 
@@ -79,9 +80,14 @@ def reportSLOC(request):
 	if form.is_valid():
 		instance = form.save(commit=False)
 		instance.developer = request.user
-		instance.save()
-		return HttpResponseRedirect("/thank_you/")
-
+		try:
+			exist = ReportSLOC.objects.get(developer=instance.developer, iteration=instance.iteration)
+			exist.total_lines += instance.total_lines
+			exist.save()
+			return HttpResponseRedirect("/thank_you/")
+		except ReportSLOC.DoesNotExist:
+			instance.save()
+			return HttpResponseRedirect("/thank_you/")
 
 	return render(request, "report_SLOC.html", context)
 
@@ -109,9 +115,18 @@ def showProjectDetail(request):
 	try:
 		phases = Phase.objects.filter(project=proj)
 		phaseList = []
+		proj_lines = 0
 		for i in phases:
 			phaseList.append(i)
+			iterations = Iteration.objects.filter(phase=i)
+			if iterations != None:
+				for ite in iterations:
+					reports = ReportSLOC.objects.filter(iteration=ite)
+					if reports != None:
+						for r in reports:
+							proj_lines += r.total_lines
 		context = {
+			"projSLOC": proj_lines,
 			"project": proj,
 			"phases": phaseList
 		}
@@ -128,9 +143,15 @@ def showPhaseDetail(request):
 	try:
 		iterations = Iteration.objects.filter(phase=phase)
 		iterationList = []
+		phaseSLOC = 0
 		for i in iterations:
 			iterationList.append(i)
+			reports = ReportSLOC.objects.filter(iteration=i)
+			if reports != None:
+				for r in reports:
+					phaseSLOC += r.total_lines
 		context = {
+			"phaseSLOC": phaseSLOC,
 			"phase": phase,
 			"iterations": iterationList
 		}
@@ -148,20 +169,16 @@ def showIterationDetail(request):
 		slocs = ReportSLOC.objects.filter(iteration=iteration)
 		slocs_total_lines = 0
 		sloc_devs_set = set()
+		dev_line_list = []
 		
 		# iteration total sloc
 		for i in slocs:
 			slocs_total_lines += i.total_lines
 			sloc_devs_set.add(i.developer)
-
-		# developer specific total
-		dev_line_list = []
-		for dev in sloc_devs_set:
-			devs_reports = ReportSLOC.objects.filter(developer=dev)
-			devs_line_total = 0
-			for report in devs_reports:
-				devs_line_total += report.total_lines
-			dev_line_list.append(devs_line_total)
+			temp = ReportSLOC.objects.filter(iteration=iteration, developer=i.developer)
+			if temp != None:
+				for a in temp:
+					dev_line_list.append(a)
 
 		context = {
 			"sloc_devs": sloc_devs_set,
@@ -169,9 +186,25 @@ def showIterationDetail(request):
 			"sloc_total": slocs_total_lines,
 			"iteration": iteration
 		}
-	except Iteration.DoesNotExist:
+		
+	except ReportSLOC.DoesNotExist:
 		context = {
 			"iteration": iteration
 		}
+	# try:
+	# 	times = timer_model.objects.filter(iteration=iteration)
+	# 	times_total = 0
+
+	# 	for i in times:
+	# 		times_total += i.running_total
+
+	# 	context = {
+	# 		"times_total": times_total
+	# 	}
+	# except timer_model.DoesNotExist:
+	# 	context = {
+	# 		"iteration": iteration
+	# 	}
+
 	return render(request, "show_iteration_detail.html", context)
 

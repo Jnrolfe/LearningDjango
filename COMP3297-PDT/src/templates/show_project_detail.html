@@ -16,6 +16,11 @@
 		</table>
 		<input type="submit" value="Show Details">
 		</form>
+		<p></p>
+		<h3>Data about this Project</h3>
+		<table class="table">
+			<tr><td>Total Lines of Code:</td><td>{{ projSLOC }}</td></tr>
+		</table>
 	{% else %}
 		<h1>There are no phases in project: {{ project.name }}</h1>
 		<p><a href="{% url 'index'%}">Go Back Home</a></p>

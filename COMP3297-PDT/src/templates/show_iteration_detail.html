@@ -9,8 +9,10 @@
 		<h1>Data for iteration: {{ iteration.name }}</h1>
 		<table class='table'>
 			<tr><td>Total Lines:</td><td>{{ sloc_total }}</td></tr>
+			<tr><td>Total Time:</td><td>{{ times_total }}</td></tr>
+			<tr><td>Total Defects:</td><td>{{ defects_total }}</td></tr>
 			{% for dev in sloc_devs %}
-			<tr><td>{{ dev }}</td><td>{{ dev_line_set.0 }}</td></tr>
+			<tr><td>{{ dev }}'s Lines:</td><td>{{ dev_line_set.forloop.counter }}</td></tr>
 			{% endfor %}
 		</table>
 	{% else %}
