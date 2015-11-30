@@ -4,7 +4,7 @@ from .models import Project, Phase, Iteration, DefectData, ReportSLOC
 # Register your models here.
 
 class ProjectAdmin(admin.ModelAdmin):
-	list_display = ('name', 'manager', 'is_closed')
+	list_display = ('name', 'manager', 'estimate', 'is_closed')
 	def save_model(self, request, obj, form, change):
 		obj.manager = request.user
 		obj.save()
@@ -22,7 +22,7 @@ class IterationAdmin(admin.ModelAdmin):
 admin.site.register(Iteration, IterationAdmin)
 
 class DefectDataAdmin(admin.ModelAdmin):
-	list_display = ('defect_iteration', 'total_defects', 'current_iteration')
+	list_display = ('defect_iteration', 'defect_type', 'current_iteration')
 
 admin.site.register(DefectData, DefectDataAdmin)
 

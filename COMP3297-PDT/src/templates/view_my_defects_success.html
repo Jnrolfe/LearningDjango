@@ -1,0 +1,15 @@
+{% load crispy_forms_tags %}
+{% block navbar %}{% include "navbar.html" %}{% endblock %}
+
+{% block sidebar %}{% include "sidebar.html" %}{% endblock %}
+
+{% block section %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<table class='table'>
+		{% for defect in defects %}
+			<tr><td>{{ forloop.counter }}</td><td>{{ defect }}</td></tr>
+		{% endfor %}
+		{{ msg }}
+	</table>
+</div>
+{% endblock %}

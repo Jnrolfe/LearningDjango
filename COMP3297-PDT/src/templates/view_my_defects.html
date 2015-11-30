@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load class_check_tag %}
+{% load staticfiles %}
+
+{% block title %}
+	{% ifusergroup ProjectManager %}
+		Restricted
+	{% else %}
+		{% ifusergroup SoftwareDeveloper %}
+			New Defect Data
+		{% else %}
+			Restricted
+		{% endifusergroup %}
+	{% endifusergroup %}
+{% endblock %}
+
+{% block identification %}
+	{% ifusergroup ProjectManager %}
+		<h1>This page is available to Software Developers ONLY</h1>
+		<p><a href="{% url 'index'%}">Go Back</a></p>
+	{% else %}
+		{% ifusergroup SoftwareDeveloper %}
+			{% include "view_my_defects_success.html" %}
+		{% else %}
+			<h1>This page is Restricted</h1>
+			<p><a href="{% url 'auth_login'%}">Login</a>
+		{% endifusergroup %}
+	{% endifusergroup %}
+{% endblock %}

@@ -7,4 +7,9 @@ class TimerForm(forms.ModelForm):
 
 	class Meta:
 		model = Timer
-		fields = ['iteration', 'running_total']
+		fields = ['iteration', 'start_time']
+
+class StopTimerForm(forms.ModelForm):
+	class Meta:
+		model = Timer
+		fields = ['iteration', 'start_time', 'end_time']

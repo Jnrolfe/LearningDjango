@@ -7,6 +7,7 @@ from django.core.context_processors import csrf
 from .forms import ProjectForm, PhaseForm, IterationForm, DefectDataForm, ReportSLOCForm
 from .models import Project, Phase, Iteration, DefectData, ReportSLOC
 from timer.models import Timer as timer_model
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -208,3 +209,75 @@ def showIterationDetail(request):
 
 	return render(request, "show_iteration_detail.html", context)
 
+def viewMyDefects(request):
+	p = request.POST
+	User = request.user
+	try:
+		defects = DefectData.objects.filter(developer=User)
+		context = {
+			"defects": defects
+		}
+	except DefectData.DoesNotExist:
+		msg = "No Defect data found for: "+str(User)
+		context = {
+			"error_msg": msg
+		}
+
+	return render(request, "view_my_defects.html", context)
+
+def viewMySLOC(request):
+	p = request.POST
+	User = request.user
+	try:
+		mySLOCs = ReportSLOC.objects.filter(developer=User)
+		context = {
+			"mySLOCs" : mySLOCs
+		}
+	except ReportSLOC.DoesNotExist:
+		msg = "No SLOC data found for: "+str(User)
+		context = {
+			"error_msg": msg
+		}
+
+	return render(request, "view_my_SLOC.html", context)
+
+def viewMyTime(request):
+	p = request.POST
+	User = request.user
+	try:
+		myTimes = timer_model.objects.filter(user=User)
+		context = {
+			"myTimes" : myTimes
+		}
+	except timer_model.DoesNotExist:
+		msg = "No Time data found for: "+str(User)
+		context = {
+			"error_msg": msg
+		}
+
+	return render(request, "view_my_times.html", context)
+
+def manageProjects(request):
+	p = request.POST
+	User = request.user
+	try:
+		projects = Project.objects.filter(manager=User)
+		context = {
+			"projects": projects
+		}
+		
+	except Project.DoesNotExist:
+		msg = "No project data found for: "+str(User)
+
+	return render(request, "manage_projects.html", context)
+
+def closeProjects(request):
+	p = request.POST
+	p_id = p['close']
+	close_proj = Project.objects.get(pk=p_id)
+	close_proj.is_closed = True
+	close_proj.save()
+	return HttpResponseRedirect("/thank_you/")
+
+# add open and close projects, phases, iterations
+# filter all project, phase, and iterations by is_closed of self, phase, project

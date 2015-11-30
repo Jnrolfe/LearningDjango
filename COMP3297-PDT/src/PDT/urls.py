@@ -22,5 +22,10 @@ urlpatterns = [
     url(r'^show_project_detail/', 'project.views.showProjectDetail', name = "show_project_detail"),
     url(r'^show_phase_detail/', 'project.views.showPhaseDetail', name = "show_phase_detail"),
     url(r'^show_iteration_detail/', 'project.views.showIterationDetail', name = "show_iteration_detail"),
+    url(r'^view_my_defects/', 'project.views.viewMyDefects', name = "view_my_defects"),
+    url(r'^view_my_times/', 'project.views.viewMyTime', name = "view_my_times"),
+    url(r'^view_my_SLOC/', 'project.views.viewMySLOC', name = "view_my_SLOC"),
+    url(r'^manage_projects/', 'project.views.manageProjects', name = "manage_projects"),
+    url(r'^close_projects/', 'project.views.closeProjects', name = "close_projects"),
 ]
 

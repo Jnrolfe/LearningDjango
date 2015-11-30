@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load class_check_tag %}
+{% load staticfiles %}
+
+{% block title %}
+	{% ifusergroup ProjectManager %}
+		Manage Projects
+	{% else %}
+		Restricted
+	{% endifusergroup %}
+{% endblock %}
+
+{% block identification %}
+	{% ifusergroup ProjectManager %}
+		{% include "manage_projects_success.html" %}
+	{% else %}
+		{% ifusergroup SoftwareDeveloper %}
+			<h1>This page is available to Project Managers ONLY</h1>
+			<p><a href="{% url 'index'%}">Go Back</a></p>
+		{% else %}
+			<h1>This page is Restricted</h1>
+			<p><a href="{% url 'auth_login'%}">Login</a>
+		{% endifusergroup %}
+	{% endifusergroup %}
+{% endblock %}

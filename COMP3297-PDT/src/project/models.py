@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Project(models.Model):
 	manager = models.ForeignKey(User, unique=False, editable=False, null=True, blank=True)
 	name = models.CharField("project", max_length=30)
+	estimate = models.PositiveIntegerField(default=0, blank=False)
 	is_closed = models.BooleanField(default=False)
 
 	def __str__(self):
@@ -30,7 +31,7 @@ class Iteration(models.Model):
 class DefectData(models.Model):
 	current_iteration = models.ForeignKey(Iteration, related_name="current_iteration", null=True, blank=True)
 	defect_iteration = models.ForeignKey(Iteration, related_name="defect_iteration", null=True, blank=True)
-	total_defects = models.PositiveIntegerField()
+	defect_type = models.CharField(max_length=30, default="type 1 defect")
 	developer = models.ForeignKey(User, null=True, blank=True)
 	defect_description = models.TextField(blank=True)
 
